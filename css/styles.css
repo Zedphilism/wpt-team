@@ -293,4 +293,38 @@ a:hover {
   padding: 0.6rem 1.2rem;
   font-size: 0.9rem;
 }
+/* Navigation Links Hover */
+.nav-links a {
+  position: relative;
+  padding: 0.3rem 0;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #76c7c0;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Social Links Hover */
+.social-icons a {
+  display: inline-block;
+  margin: 0 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px);
+}
 
