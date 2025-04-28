@@ -240,4 +240,9 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+.small-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
 
