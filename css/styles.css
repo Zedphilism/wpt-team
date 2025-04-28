@@ -26,7 +26,55 @@ body {
     z-index: 1;
     animation: bgZoom 30s ease-in-out infinite alternate;
   }
-  
+  .blog-section {
+  text-align: center;
+  padding: 6rem 1rem;
+}
+
+.blog-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.blog-card {
+  background-color: rgba(31, 31, 31, 0.85);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: left;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(44, 44, 44, 0.9);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #76c7c0;
+  border: 1px solid #76c7c0;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #76c7c0;
+  color: #121212;
+}
+
   /* Dark overlay */
   body::before {
     content: "";
