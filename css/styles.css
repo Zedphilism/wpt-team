@@ -405,4 +405,33 @@ html {
   transform: translateY(-3px);
   opacity: 1;
 }
+/* Fix for projects grid layout with 2 cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: start;
+}
+
+/* Project Card Styling (in case missing) */
+.project-card {
+  background-color: rgba(31, 31, 31, 0.85);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: left;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(44, 44, 44, 0.9);
+}
+
+.project-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
 
