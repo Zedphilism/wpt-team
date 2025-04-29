@@ -434,4 +434,30 @@ html {
   border-radius: 6px;
   margin-bottom: 1rem;
 }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch; /* <--- Important */
+}
+
+.project-card {
+  background-color: rgba(31, 31, 31, 0.85);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: left;
+  transition: transform 0.3s, background-color 0.3s;
+  display: flex;            /* NEW */
+  flex-direction: column;   /* NEW */
+  justify-content: space-between; /* NEW */
+  height: 100%;              /* NEW */
+}
+
+.project-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
 
