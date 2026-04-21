@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analisis Perolehan Pukal — Alatganti OEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-hover: #334155;
+      --border: #334155;
+      --primary: #f59e0b; /* Amber */
+      --primary-hover: #d97706;
+      --secondary: #3b82f6; /* Blue */
+      --success: #10b981; /* Emerald */
+      --danger: #ef4444; /* Red */
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px -5px rgba(245, 158, 11, 0.15);
+    }
+    
+    .brand {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .brand h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .brand p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    .category-section {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 30px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
+    }
+    
+    .cat-head {
+      background: rgba(255,255,255,0.03);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .cat-title { font-size: 18px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 10px; }
+    .cat-title.consumable { color: var(--success); }
+    .cat-title.electronics { color: var(--secondary); }
+    .cat-title.body { color: var(--primary); }
+    .cat-title.critical { color: var(--danger); }
+    
+    .cat-desc { font-size: 12px; color: var(--text-muted); max-width: 60%; }
+    
+    .table-container { overflow-x: auto; }
+    
+    table { width: 100%; border-collapse: collapse; min-width: 800px; text-align: left; }
+    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 13px; }
+    th { font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-size: 11px; }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+    
+    .pn { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--text); }
+    
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+    .badge-high { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-med { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .badge-low { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    
+    .rec-supplier { font-weight: 600; color: var(--primary); }
+    .price-save { color: var(--success); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    
+    .footer-note { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+    
+    /* Navigation Bar */
+    .nav-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .nav-btn {
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      flex: 1;
+      text-align: center;
+      min-width: 120px;
+    }
+    
+    .nav-btn:hover {
+      background: var(--surface-hover);
+    }
+    
+    .nav-btn.active {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+  </style>
+</head>
+<body>
+
+<nav class="nav-bar">
+  <a href="alatganti-local.html" class="nav-btn">📊 Dashboard Perolehan</a>
+  <a href="alatganti-bulk-categories.html" class="nav-btn active">📦 Analisis Pukal</a>
+</nav>
+
+<header>
+  <div class="brand">
+    <div>
+      <h1>Logistik Perolehan Pukal (Bulk Categorization)</h1>
+      <p>Pecahan mengikut kategori untuk pengoptimuman diskaun dan kuantiti sasaran</p>
+    </div>
+  </div>
+</header>
+
+<!-- CATEGORY 1: CONSUMABLES -->
+<div class="category-section">
+  <div class="cat-head">
+    <div class="cat-title consumable">● Alat Habis Pakai (Consumables)</div>
+    <div class="cat-desc">Alat ganti yang kerap diganti seperti pad brek, rantai, dan sproket. Sangat disyorkan untuk beli secara pukal (kotak/karton) terus dari pengedar utama (Tayaria / RK South Asia) bagi memaksimumkan penjimatan harga.</div>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Jenis Alat Ganti</th>
+          <th>Model Penglibatan</th>
+          <th>Potensi Pukal</th>
+          <th>Kuantiti Cadangan (Lot)</th>
+          <th>Pembekal Sah Sasaran</th>
+          <th>Potensi Diskaun Pukal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pn">Pad Brek (Depan & Belakang)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-high">Sangat Tinggi</span></td>
+          <td><strong>10 - 20 Set</strong> (Sekotak)</td>
+          <td class="rec-supplier">Bendix Moto Malaysia (Shopee Mall)</td>
+          <td><span class="price-save">~15% kesetiaan/voucher</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Rantai Pacuan (Drive Chain)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-high">Sangat Tinggi</span></td>
+          <td><strong>5 - 10 Unit</strong></td>
+          <td class="rec-supplier">RK-M Malaysia Official / AutoDenso</td>
+          <td><span class="price-save">~10% (borong karton)</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Sproket (Depan & Belakang)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-med">Sederhana T.</span></td>
+          <td><strong>5 - 10 Set</strong></td>
+          <td class="rec-supplier">RK-M Malaysia Official</td>
+          <td><span class="price-save">~10%</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Kabel Klac & Pendikit</span></td>
+          <td>KLX250 / CRF250L</td>
+          <td><span class="badge badge-med">Sederhana T.</span></td>
+          <td><strong>5 Unit</strong></td>
+          <td class="rec-supplier">AutoDenso / Tayaria Partner</td>
+          <td><span class="price-save">Tiada data tepat</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CATEGORY 2: KOSMETIK & KOMPONEN CRASH -->
+<div class="category-section">
+  <div class="cat-head">
+    <div class="cat-title body">● Kosmetik & Komponen Hentakan (Body / Crash Elements)</div>
+    <div class="cat-desc">Komponen yang kerap rosak akibat kemalangan atau jatuh (scrambler). Boleh dibeli dalam kuantiti sederhana tinggi dan disimpan di stor.</div>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Jenis Alat Ganti</th>
+          <th>Model Penglibatan</th>
+          <th>Potensi Pukal</th>
+          <th>Kuantiti Cadangan (Lot)</th>
+          <th>Pembekal Sah Sasaran</th>
+          <th>Potensi Diskaun Pukal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pn">Tuas Brek / Klac (Levers)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-high">Sekerap</span></td>
+          <td><strong>5 - 10 Unit</strong> Kiri/Kanan</td>
+          <td class="rec-supplier">Eang Chun Motor / Boon Siew Honda</td>
+          <td><span class="price-save">Rundingan B2B Dealer</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Lampu Isyarat (Winker Assy)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-med">Sederhana</span></td>
+          <td><strong>2 - 4 Set Lengkap</strong></td>
+          <td class="rec-supplier">Eang Chun Motor / EMOS (Gurun)</td>
+          <td><span class="price-save">B2B margin ~5-8%</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Tongkat Sisi & Spring</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-low">Rendah</span></td>
+          <td><strong>2 - 3 Unit</strong></td>
+          <td class="rec-supplier">Boon Siew HQ / AutoDenso</td>
+          <td><span class="price-save">-</span></td>
+        </tr>
+        <tr>
+          <td><span class="pn">Gegagang Plastik (Grips)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-med">Sederhana</span></td>
+          <td><strong>5 Set</strong></td>
+          <td class="rec-supplier">Eang Chun Motor</td>
+          <td><span class="price-save">Rundingan B2B</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CATEGORY 3: ELEKTRONIK & TEKNIKAL -->
+<div class="category-section">
+  <div class="cat-head">
+    <div class="cat-title electronics">● Sistem Elektronik (Electronics)</div>
+    <div class="cat-desc">Komponen bernilai tinggi. Pembelian pukal kurang relevan, namun hubungan terus (B2B channel) dengan pengedar HQ amat penting bagi jaminan harga seragam dan alat ganti tulen.</div>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Jenis Alat Ganti</th>
+          <th>Model Penglibatan</th>
+          <th>Potensi Pukal</th>
+          <th>Kuantiti Cadangan (Lot)</th>
+          <th>Pembekal Sah Sasaran</th>
+          <th>Nota Keselamatan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pn">Meter Panel LCD</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-low">Ad-Hoc Sahaja</span></td>
+          <td><strong>On-Demand (JIT)</strong></td>
+          <td class="rec-supplier">EMOS HQ / Boon Siew HQ</td>
+          <td>Sahihkan casis elak kecurian</td>
+        </tr>
+        <tr>
+          <td><span class="pn">Starter Magnetic Relay</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-low">Ad-Hoc Sahaja</span></td>
+          <td><strong>1 - 2 Unit Buffer</strong></td>
+          <td class="rec-supplier">HQ / Eang Chun Motor</td>
+          <td>Pastikan ketulenan OEM 100%</td>
+        </tr>
+        <tr>
+          <td><span class="pn">Fuel Pump Assy</span></td>
+          <td>KLX 250</td>
+          <td><span class="badge badge-low">Ad-Hoc Sahaja</span></td>
+          <td><strong>On-Demand</strong></td>
+          <td class="rec-supplier">EMOS Kawasaki</td>
+          <td>Komponen sensitif</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CATEGORY 4: KRITIKAL / ENJIN -->
+<div class="category-section">
+  <div class="cat-head">
+    <div class="cat-title critical">● Enjin & Keselamatan Kritikal (Engine & Safety Critical)</div>
+    <div class="cat-desc">Komponen teras operasi seperti penampan (shocks) dan silinder brek (masters). Pesanan khas sahaja, tiada stok stor dinasihatkan kerana faktor penyusutan (depreciation) dan isu waranti.</div>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Jenis Alat Ganti</th>
+          <th>Model Penglibatan</th>
+          <th>Potensi Pukal</th>
+          <th>Kuantiti Cadangan (Lot)</th>
+          <th>Pembekal Sah Sasaran</th>
+          <th>Maklumat Rantaian Bekalan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pn">Shock Absorber (Penampan)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-low">Khas</span></td>
+          <td><strong>Back-to-Back Order</strong></td>
+          <td class="rec-supplier">Boon Siew HQ / EMOS HQ</td>
+          <td>Menunggu ketibaan Jepun ~14 Hari sekiranya tiada stok</td>
+        </tr>
+        <tr>
+          <td><span class="pn">Silinder Brek Utama (Master Cyl)</span></td>
+          <td>CRF250L / KLX250</td>
+          <td><span class="badge badge-low">Khas</span></td>
+          <td><strong>Back-to-Back Order</strong></td>
+          <td class="rec-supplier">Boon Siew HQ / Eang Chun</td>
+          <td>Tulen sah sahaja (Isu Insurans)</td>
+        </tr>
+        <tr>
+          <td><span class="pn">Kipas Radiator / Tangki Penyejuk</span></td>
+          <td>KLX250</td>
+          <td><span class="badge badge-low">Khas</span></td>
+          <td><strong>Back-to-Back Order</strong></td>
+          <td class="rec-supplier">EMOS Kawasaki</td>
+          <td>JIT (Just in Time)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer-note">
+  Dasar Perolehan Tempatan: Segala pengiraan kos masa hadapan (untuk bajet sebut harga tender kerajaan/syarikat) disarankan merujuk kategori "Alat Habis Pakai", "Kosmetik", dan baki diperuntukkan kepada belian Ad-hoc supaya modal (Cash Flow) tidak terikat pada komponen tidak bergerak.
+</div>
+
+</body>
+</html>
