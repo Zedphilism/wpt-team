@@ -1008,7 +1008,7 @@ Spring Tongkat Sisi
 
 # CLAUDE.md: Workshop Master Job Control
 > Project Constitution for AI agents managing scrambler parts procurement and Job Files.
-> Last reviewed: 2026-04-20
+> Last reviewed: 2026-04-21
 
 ---
 
