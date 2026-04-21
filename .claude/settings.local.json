@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"C:\\\\Users\\\\user\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"workshop procurement job file data table document mobile\" --design-system -p \"Alatganti Job Files\")",
+      "Bash(git add *)",
+      "Bash(git -C \"C:\\\\Users\\\\user\\\\Desktop\\\\wpt-team-main\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\user\\\\Desktop\" status)",
+      "Bash(git init *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
