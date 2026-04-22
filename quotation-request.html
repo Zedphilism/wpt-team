@@ -107,7 +107,7 @@
         .vendor-section {
             margin-top: 50px;
             border-top: 1px solid var(--border);
-            pt: 30px;
+            padding-top: 30px;
         }
 
         .vendor-grid {
@@ -190,8 +190,11 @@
 <body>
 
     <div class="container">
-        <div class="no-print" style="text-align: right;">
-            <button class="btn btn-print" onclick="window.print()">🖨️ Download PDF / Print</button>
+        <div class="no-print" style="text-align: right; display: flex; justify-content: flex-end; gap: 10px;">
+            <button class="btn btn-print" style="background: #c0392b;" onclick="printBrand('honda')">🏍️ Print Honda
+                PDF</button>
+            <button class="btn btn-print" style="background: #1a1a2e;" onclick="printBrand('kawasaki')">🏍️ Print
+                Kawasaki PDF</button>
         </div>
 
         <header>
@@ -243,7 +246,7 @@
                 yang telah dimuaturun ke dalam emel sebelum menghantar.</p>
 
             <div class="vendor-grid">
-                <div class="vendor-card">
+                <div class="vendor-card" id="vendor-honda">
                     <h3>Boon Siew Honda (OEM)</h3>
                     <div class="btn-group">
                         <a href="mailto:parts@bsh.com.my?subject=Inquiry Harga Alat Ganti Honda CRF250L&body=Tuan/Puan,%0D%0A%0D%0ASila rujuk senarai alat ganti dalam lampiran PDF untuk sebut harga.%0D%0A%0D%0ATerima Kasih."
@@ -253,7 +256,7 @@
                     </div>
                 </div>
 
-                <div class="vendor-card">
+                <div class="vendor-card" id="vendor-kawasaki">
                     <h3>EMOS Kawasaki (OEM)</h3>
                     <div class="btn-group">
                         <a href="mailto:spareparts@kawasaki.com.my?subject=Inquiry Harga Alat Ganti Kawasaki KLX250&body=Tuan/Puan,%0D%0A%0D%0ASila rujuk senarai alat ganti dalam lampiran PDF untuk sebut harga.%0D%0A%0D%0ATerima Kasih."
@@ -263,7 +266,7 @@
                     </div>
                 </div>
 
-                <div class="vendor-card">
+                <div class="vendor-card" id="vendor-eangchun">
                     <h3>Eang Chun Motor (Local Dealer)</h3>
                     <div class="btn-group">
                         <a href="mailto:sales@eangchun.com?subject=Pertanyaan Stok Alat Ganti&body=Tuan,%0D%0A%0D%0AMohon semak stok dan harga untuk senarai dalam PDF lampiran.%0D%0A%0D%0ATerima Kasih."
@@ -273,7 +276,7 @@
                     </div>
                 </div>
 
-                <div class="vendor-card">
+                <div class="vendor-card" id="vendor-autodenso">
                     <h3>AutoDenso (E-Commerce)</h3>
                     <div class="btn-group">
                         <a href="mailto:support@autodenso.com.my?subject=Bulk Inquiry Parts&body=Hi AutoDenso,%0D%0A%0D%0AI would like to inquire about bulk prices for the following parts list in the attached PDF."
@@ -369,6 +372,38 @@
                 kBody.appendChild(tr);
             }
         });
+
+        function printBrand(brand) {
+            const hondaSec = document.getElementById('honda-section');
+            const kawasakiSec = document.getElementById('kawasaki-section');
+            const vHonda = document.getElementById('vendor-honda');
+            const vKawasaki = document.getElementById('vendor-kawasaki');
+            const h1 = document.querySelector('header h1');
+            const originalTitle = h1.innerText;
+
+            if (brand === 'honda') {
+                kawasakiSec.style.display = 'none';
+                hondaSec.style.display = 'block';
+                vKawasaki.style.display = 'none';
+                vHonda.style.display = 'block';
+                h1.innerText = "Inquiry Harga: Honda CRF250L";
+            } else {
+                hondaSec.style.display = 'none';
+                kawasakiSec.style.display = 'block';
+                vHonda.style.display = 'none';
+                vKawasaki.style.display = 'block';
+                h1.innerText = "Inquiry Harga: Kawasaki KLX 250";
+            }
+
+            window.print();
+
+            // Restore the full view after printing
+            hondaSec.style.display = 'block';
+            kawasakiSec.style.display = 'block';
+            vHonda.style.display = 'block';
+            vKawasaki.style.display = 'block';
+            h1.innerText = originalTitle;
+        }
     </script>
 
 </body>
