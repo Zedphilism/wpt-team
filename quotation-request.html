@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borang Pertanyaan Harga — W.P Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --border: #e2e8f0;
+            --text: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.5;
+            padding: 40px;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta {
+            font-size: 13px;
+            color: #64748b;
+            text-align: right;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 30px 0 15px;
+            padding-left: 10px;
+            border-left: 4px solid var(--accent);
+            background: #f1f5f9;
+            padding: 8px 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: #475569;
+        }
+
+        .pn {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .qty {
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .vendor-section {
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
+            pt: 30px;
+        }
+
+        .vendor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .vendor-card {
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .vendor-card h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-email {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .btn-wa {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .btn-print {
+            background: var(--primary);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+                width: 100%;
+                max-width: none;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .vendor-card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="no-print" style="text-align: right;">
+            <button class="btn btn-print" onclick="window.print()">🖨️ Download PDF / Print</button>
+        </div>
+
+        <header>
+            <div>
+                <h1>Inquiry Harga Alat Ganti</h1>
+                <p>W.P Team Workshop Procurement</p>
+            </div>
+            <div class="meta">
+                <div>Tarikh: 2026-04-21</div>
+                <div>Ref: REQ/WPT/2026/004</div>
+            </div>
+        </header>
+
+        <section id="honda-section">
+            <h2>Honda CRF250L</h2>
+            <table id="honda-table">
+                <thead>
+                    <tr>
+                        <th>Nama Alat Ganti</th>
+                        <th>Part Number</th>
+                        <th style="text-align: center;">Kuantiti</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filtered from rawData -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="kawasaki-section">
+            <h2>Kawasaki KLX 250</h2>
+            <table id="kawasaki-table">
+                <thead>
+                    <tr>
+                        <th>Nama Alat Ganti</th>
+                        <th>Part Number</th>
+                        <th style="text-align: center;">Kuantiti</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filtered from rawData -->
+                </tbody>
+            </table>
+        </section>
+
+        <div class="vendor-section no-print">
+            <h2 style="background: none; border: none; padding-left: 0;">Hubungi Pembekal Untuk Sebut Harga</h2>
+            <p style="font-size: 12px; color: #64748b; margin-bottom: 15px;">Sila pastikan anda melampirkan fail PDF
+                yang telah dimuaturun ke dalam emel sebelum menghantar.</p>
+
+            <div class="vendor-grid">
+                <div class="vendor-card">
+                    <h3>Boon Siew Honda (OEM)</h3>
+                    <div class="btn-group">
+                        <a href="mailto:parts@bsh.com.my?subject=Inquiry Harga Alat Ganti Honda CRF250L&body=Tuan/Puan,%0D%0A%0D%0ASila rujuk senarai alat ganti dalam lampiran PDF untuk sebut harga.%0D%0A%0D%0ATerima Kasih."
+                            class="btn btn-email">✉️ Email POC</a>
+                        <a href="https://wa.me/6045063333?text=Salam, saya ingin bertanya harga untuk senarai alat ganti Honda CRF250L (PDF dilampirkan)."
+                            target="_blank" class="btn btn-wa">💬 WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="vendor-card">
+                    <h3>EMOS Kawasaki (OEM)</h3>
+                    <div class="btn-group">
+                        <a href="mailto:spareparts@kawasaki.com.my?subject=Inquiry Harga Alat Ganti Kawasaki KLX250&body=Tuan/Puan,%0D%0A%0D%0ASila rujuk senarai alat ganti dalam lampiran PDF untuk sebut harga.%0D%0A%0D%0ATerima Kasih."
+                            class="btn btn-email">✉️ Email POC</a>
+                        <a href="https://wa.me/60355699239?text=Salam, saya ingin bertanya harga untuk senarai alat ganti Kawasaki KLX250 (PDF dilampirkan)."
+                            target="_blank" class="btn btn-wa">💬 WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="vendor-card">
+                    <h3>Eang Chun Motor (Local Dealer)</h3>
+                    <div class="btn-group">
+                        <a href="mailto:sales@eangchun.com?subject=Pertanyaan Stok Alat Ganti&body=Tuan,%0D%0A%0D%0AMohon semak stok dan harga untuk senarai dalam PDF lampiran.%0D%0A%0D%0ATerima Kasih."
+                            class="btn btn-email">✉️ Email POC</a>
+                        <a href="https://wa.me/60340234790?text=Salam, saya ingin cek stok alat ganti mengikut senarai PDF ini."
+                            target="_blank" class="btn btn-wa">💬 WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="vendor-card">
+                    <h3>AutoDenso (E-Commerce)</h3>
+                    <div class="btn-group">
+                        <a href="mailto:support@autodenso.com.my?subject=Bulk Inquiry Parts&body=Hi AutoDenso,%0D%0A%0D%0AI would like to inquire about bulk prices for the following parts list in the attached PDF."
+                            class="btn btn-email">✉️ Email POC</a>
+                        <a href="https://wa.me/60123456789?text=Hi AutoDenso, inquiring about parts availability for this list."
+                            target="_blank" class="btn btn-wa">💬 WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="margin-top: 50px; font-size: 10px; color: #94a3b8; text-align: center;">
+            Dokumen Dijana Secara Automatik &nbsp;|&nbsp; W.P Team Procurement System &nbsp;|&nbsp; 2026
+        </footer>
+    </div>
+
+    <script>
+        const rawData = [
+            { model: "Honda CRF250L", pn: "37100-KZZ-D21", name: "Meter Panel Assy - Panel Meter", qty: 2 },
+            { model: "Honda CRF250L", pn: "06451-KZZ-201", name: "Pad Set Front - Pad Brek Hadapan", qty: 1 },
+            { model: "Honda CRF250L", pn: "06435-KZZ-201", name: "Pad Set Rear - Pad Brek Belakang", qty: 1 },
+            { model: "Honda CRF250L", pn: "45510-KZZ-901", name: "Cyl Sub Assy Frt Brk Master - Silinder Brek Hadapan", qty: 2 },
+            { model: "Honda CRF250L", pn: "53140-KZZ-900", name: "Grip Comp Throttle - Gegagang Pusing Gas", qty: 3 },
+            { model: "Honda CRF250L", pn: "53150-KZZ-900", name: "Grip L Handle - Gegagang Kiri", qty: 2 },
+            { model: "Honda CRF250L", pn: "53178-KZZ-900", name: "Lever L Handle - Tuas Kiri", qty: 2 },
+            { model: "Honda CRF250L", pn: "53175-KZZ-900", name: "Lever R Handle - Tuas Kanan", qty: 2 },
+            { model: "Honda CRF250L", pn: "35010-KZZ-D20", name: "Key Set - Set Kunci", qty: 1 },
+            { model: "Honda CRF250L", pn: "35850-M7H-003", name: "Switch Assy Starter Magnetic - Relay Starter", qty: 1 },
+            { model: "Honda CRF250L", pn: "52400-KZZ-G41", name: "Cushion Assy RR (Showa) - Penampan Belakang (Showa)", qty: 2 },
+            { model: "Honda CRF250L", pn: "50541-KZZ-J00", name: "Spring Side Stand - Spring Tongkat Sisi", qty: 1 },
+            { model: "Honda CRF250L", pn: "35700-KZZ-D20", name: "Bar Comp Side Stand - Batang Tongkat Sisi", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "23037-0119", name: "Lamp Assy Signal FR L - Lampu Isyarat Depan Kiri", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "23037-0120", name: "Lamp Assy Signal FR R - Lampu Isyarat Depan Kanan", qty: 4 },
+            { model: "Kawasaki KLX 250", pn: "23037-0122", name: "Lamp Assy Signal RR RH - Lampu Isyarat Belakang Kanan", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "25031-0170", name: "Meter Assy LCD - Panel Meter LCD", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "48014-0246-29F", name: "Shock Absorber - Penampan Hentakan", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "43082-0090", name: "Pad Assy Brake RR - Pad Brek Belakang", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "46092-1140", name: "Lever Grip Frt Brk - Tuas Brek Hadapan", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "34024-0079-458", name: "Stand Side P. Silver - Tongkat Sisi (Perak)", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "92145-0085", name: "Spring Side Stand - Spring Tongkat Sisi", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "59502-0028", name: "Fan Assy - Kipas Penyejuk", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "23007-0137", name: "Lens Comp Headlamp - Kanta Lampu Hadapan", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "46019-0036", name: "Grip Assy Throttle - Gegagang Pusing Gas", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "46075-0082", name: "Grip LH - Gegagang Kiri", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "46076-1244", name: "Lever Grip Clutch - Tuas Klac", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "43082-0060", name: "Pad Assy Brake FR - Pad Brek Hadapan", qty: 2 },
+            { model: "Honda CRF250L", pn: "17620-MEG-003", name: "Cap Comp Fuel Filler - Penutup Tangki Minyak", qty: 1 },
+            { model: "Honda CRF250L", pn: "77200-KZZ-900ZD", name: "Seat Assy Double - Tempat Duduk Berganda", qty: 1 },
+            { model: "Honda CRF250L", pn: "61140-KZZ-900ZD", name: "Visor Set Front - Visor Hadapan", qty: 1 },
+            { model: "Honda CRF250L", pn: "50541-KZZ-000", name: "Spring Side Stand - Spring Tongkat Sisi", qty: 1 },
+            { model: "Honda CRF250L", pn: "35700-KZZ-020", name: "Bar Comp Side Stand - Batang Tongkat Sisi", qty: 2 },
+            { model: "Honda CRF250L", pn: "35010-KZZ-000", name: "Key Set - Set Kunci", qty: 1 },
+            { model: "Honda CRF250L", pn: "41201-KZZ-000", name: "Sprocket Final Drive (MT) - Gear Sproket Pacuan", qty: 1 },
+            { model: "Honda CRF250L", pn: "40540-KYJ-900", name: "Chain Drive - Rantai Pacuan", qty: 1 },
+            { model: "Honda CRF250L", pn: "23801-KZZ-900", name: "Sprocket Drive - Gear Sproket Akhir", qty: 1 },
+            { model: "Honda CRF250L", pn: "35850-MJH-003", name: "Switch Assy Starter Magnetic - Relay Starter", qty: 1 },
+            { model: "Honda CRF250L", pn: "33110-KZZ-D11", name: "Headlight Unit - Unit Lampu Hadapan", qty: 2 },
+            { model: "Honda CRF250L", pn: "06451-KZZ-901", name: "Pad Set Front - Pad Brek Hadapan", qty: 2 },
+            { model: "Honda CRF250L", pn: "06435-KZZ-901", name: "Pad Set Rear - Pad Brek Belakang", qty: 2 },
+            { model: "Honda CRF250L", pn: "22870-KZZ-000", name: "Cable Comp Clutch - Kabel Klac", qty: 2 },
+            { model: "Honda CRF250L", pn: "33400-KZZ-D01", name: "Winker Assy R Front - Lampu Isyarat Depan Kanan", qty: 1 },
+            { model: "Honda CRF250L", pn: "33450-KZZ-D21", name: "Winker Assy L Front - Lampu Isyarat Depan Kiri", qty: 2 },
+            { model: "Honda CRF250L", pn: "33600-KZZ-J11", name: "Winker Assy R Rear - Lampu Isyarat Belakang Kanan", qty: 2 },
+            { model: "Honda CRF250L", pn: "33650-KZZ-J11", name: "Winker Assy L Rear - Lampu Isyarat Belakang Kiri", qty: 2 },
+            { model: "Honda CRF250L", pn: "41201-KZZ-J00", name: "Sprocket Final Drive (40T) - Gear Sproket Akhir (40T)", qty: 1 },
+            { model: "Honda CRF250L", pn: "23801-KYJ-900", name: "Sprocket Drive (14T) - Gear Sproket Pacuan (14T)", qty: 1 },
+            { model: "Honda CRF250L", pn: "40540-KYJ-902", name: "Chain Drive (D400) - Rantai Pacuan (D400)", qty: 1 },
+            { model: "Honda CRF250L", pn: "24700-KZZ-J00", name: "Pedal Assy Change - Pedal Tukar Gear", qty: 1 },
+            { model: "Honda CRF250L", pn: "33400-KZZ-D21", name: "Winker Assy R Front - Lampu Isyarat Depan Kanan", qty: 1 },
+            { model: "Honda CRF250L", pn: "35850-MT4-003", name: "Switch Assy Starter Magnetic - Relay Starter", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "43078-0044-0001", name: "Coolant Spare Tank - Tangki Air Penyejuk Ganti", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "27010-0870", name: "Starter Relay - Relay Starter", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "49040-0027", name: "Fuel Pump Assy - Pam Minyak", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "53066-0221", name: "Seat Assy Dual Black - Tempat Duduk Berganda Hitam", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "92058-0050", name: "Chain Drive - Rantai Pacuan", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "13144-0022", name: "Sprocket Drive - Gear Sproket Pacuan", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "42041-0023", name: "Sprocket Final Drive - Gear Sproket Akhir", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "54011-0093", name: "Clutch Cable - Kabel Klac", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "46091A-0163", name: "Indicator L/R - Penunjuk Arah (Kiri/Kanan)", qty: 2 },
+            { model: "Kawasaki KLX 250", pn: "49085-1075", name: "Radiator Cap - Penutup Radiator", qty: 1 },
+            { model: "Kawasaki KLX 250", pn: "43080-0048-GN", name: "Brake Pump Front - Pam Brek Hadapan", qty: 1 },
+        ];
+
+        const hBody = document.querySelector('#honda-table tbody');
+        const kBody = document.querySelector('#kawasaki-table tbody');
+
+        rawData.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${item.name}</td><td class="pn">${item.pn}</td><td class="qty">${item.qty}</td>`;
+            if (item.model === "Honda CRF250L") {
+                hBody.appendChild(tr);
+            } else {
+                kBody.appendChild(tr);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
